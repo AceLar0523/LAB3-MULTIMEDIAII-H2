@@ -64,4 +64,36 @@
     label, p { font-weight: bold; font-size: 14px; }
     button { cursor: pointer; padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
   }
+  // ... (dentro de .container o al final del archivo)
+
+.botones-animacion {
+  display: flex;
+  gap: 8px;
+  button {
+    flex: 1;
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.cuerpo {
+  // ... (estilos existentes)
+  
+  // Clase que activa la animación
+  &.rotar {
+    animation: giro-infinito 2s linear infinite;
+  }
+}
+
+// Definición de la animación
+@keyframes giro-infinito {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 }

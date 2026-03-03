@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './avatar.scss',
 })
 export class AvatarComponent {
-    
+
   colorFondo = signal<string>('#3498db');
   tamano = signal<number>(150);
   tieneLentes = signal<boolean>(false);
@@ -18,6 +18,10 @@ export class AvatarComponent {
   //Manejo de nombre
   nombreInput = signal<string>(''); 
   nombreMostrado = signal<string>('');
+
+  //CONTROL ROTACION
+  girando = signal<boolean>(false);
+
 
   cambiarColor(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -47,5 +51,14 @@ export class AvatarComponent {
 
   generarNombre() {
     this.nombreMostrado.set(this.nombreInput());
+  }
+
+    // Métodos para rotación
+  iniciarGiro() { 
+    this.girando.set(true);
+  }
+  
+  detenerGiro() {
+    this.girando.set(false);
   }
 }

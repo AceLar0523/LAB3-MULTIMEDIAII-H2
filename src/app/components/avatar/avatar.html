@@ -7,6 +7,7 @@
     <div class="canvas-avatar">
       <div
         class="cuerpo"
+        [class.rotar]="girando()"
         [style.background-color]="colorFondo()"
         [style.width.px]="tamano()"
         [style.height.px]="tamano()"
@@ -53,6 +54,13 @@
         <button (click)="toggleLentes()" class="btn-action">
           {{ tieneLentes() ? 'Quitar lentes' : 'Poner lentes' }}
         </button>
+      </div>
+      <div class="control-group">
+        <p>Animación</p>
+        <div class="botones-animacion">
+          <button (click)='iniciarGiro()' [disabled]="girando()">Girar</button>
+          <button (click)='detenerGiro()' [disabled]="!girando()">Parar</button>
+        </div>
       </div>
 
       <div class="control-group">
