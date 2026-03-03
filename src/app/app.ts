@@ -1,12 +1,18 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Importante para el *ngIf
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('laboratoriotres');
+  // Cambia esto por tu nombre real
+  protected readonly studentName = signal('Tu Nombre Aquí');
+  protected readonly labName = signal('Laboratorio 3 - Multimedia II');
+
+  constructor(public router: Router) {}
 }
