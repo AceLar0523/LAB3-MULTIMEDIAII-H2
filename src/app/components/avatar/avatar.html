@@ -1,50 +1,68 @@
 <div class="container">
-  <h2>Avatar</h2>
-  <div class="canvas-avatar">
-    <div
-      class="cuerpo"
-      [style.background-color]="colorFondo()"
-      [style.width.px]="tamano()"
-      [style.height.px]="tamano()"
-    >
-      <div class="ojos">
-        <div class="ojo"></div>
-        <div class="ojo"></div>
-        @if (tieneLentes()) {
-          <div class="lentes"></div>
-        }
-      </div>
-      <div class="boca">
-        @switch (tipoExpresion()) {
-          @case (1) {
-            <div class="feliz"></div>
+  <h1 [style.color]="colorFondo()" class="display-nombre">
+    {{ nombreMostrado() }}
+  </h1>
+
+  <div class="main-content">
+    <div class="canvas-avatar">
+      <div
+        class="cuerpo"
+        [style.background-color]="colorFondo()"
+        [style.width.px]="tamano()"
+        [style.height.px]="tamano()"
+      >
+        <div class="ojos">
+          <div class="ojo"></div>
+          <div class="ojo"></div>
+          @if (tieneLentes()) {
+            <div class="lentes"></div>
           }
-          @case (2) {
-            <div class="sorprendido"></div>
+        </div>
+        <div class="boca">
+          @switch (tipoExpresion()) {
+            @case (1) { <div class="feliz"></div> }
+            @case (2) { <div class="sorprendido"></div> }
+            @case (3) { <div class="serio"></div> }
           }
-          @case (3) {
-            <div class="serio"></div>
-          }
-        }
+        </div>
       </div>
     </div>
-  </div>
-  <div class="controles">
-    <label color>
-      <input type="color" [value]="colorFondo()" (input)="cambiarColor($event)" />
-    </label>
 
-    <label Tamaño>
-      <input type="range" min="100" max="300" [value]="tamano()" (input)="cambiarTamano($event)" />
-    </label>
-    <button (click)="toggleLentes()">
-      {{ tieneLentes() ? 'Quitar lentes' : 'Poner lentes' }} (Boolean)
-    </button>
-    <div class="expresiones">
-      <p>Expresión</p>
-      <button (click)="setExpresion(1)">feliz</button>
-      <button (click)="setExpresion(2)">sorprendido</button>
-      <button (click)="setExpresion(3)">serio</button>
+    <div class="controles">
+      <div class="control-group">
+        <p>Identidad</p>
+        <input 
+          type="text" 
+          placeholder="Nombre..." 
+          (input)="actualizarInputNombre($event)"
+          [value]="nombreInput()"
+        />
+        <button (click)="generarNombre()" class="btn-action">Generar Nombre</button>
+      </div>
+
+      <div class="control-group">
+        <p>Apariencia</p>
+        <label>
+          Color:
+          <input type="color" [value]="colorFondo()" (input)="cambiarColor($event)" />
+        </label>
+        <label>
+          Tamaño:
+          <input type="range" min="100" max="300" [value]="tamano()" (input)="cambiarTamano($event)" />
+        </label>
+        <button (click)="toggleLentes()" class="btn-action">
+          {{ tieneLentes() ? 'Quitar lentes' : 'Poner lentes' }}
+        </button>
+      </div>
+
+      <div class="control-group">
+        <p>Expresión</p>
+        <div class="expresiones-btns">
+          <button (click)="setExpresion(1)">Feliz</button>
+          <button (click)="setExpresion(2)">Wow</button>
+          <button (click)="setExpresion(3)">Serio</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
